@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  memo,
+  useState,
+  useEffect,
+  useReducer,
+  useMemo,
+  useCallback,
+} from "react";
+
+const Input = memo(function Input({ onChange }) {
+  console.log("子组件渲染");
+  return <input type="text" onChange={(e) => onChange(e.target.value)} />;
+});
 
 function App() {
+  console.log("app开始");
+  const changeHandler = useCallback((value) => console.log(value), []);
+  const [count, setCount] = useState(0);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Input onChange={changeHandler} />
+      <button onClick={() => setCount(count + 1)}>count</button>
     </div>
   );
 }
