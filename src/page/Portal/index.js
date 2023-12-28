@@ -1,5 +1,14 @@
+import Card from "../../component/Card";
+import { cardList } from "./data.js";
+
 const Portal = () => {
-  return <div>管理者桌面111</div>;
+  const listHTML = cardList.map((item) => (
+    <div>
+      {item.title}
+      <Card />
+    </div>
+  ));
+  return <div>{listHTML}</div>;
 };
 
 export default Portal;
